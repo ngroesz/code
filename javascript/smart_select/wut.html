@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="smartselect, phossa, jquery, bootstrap, multiple select, multiselect, jquery plugin, html select replacement">
+        <meta name="author" content="Hong Zhang">
+        <title>jQuery SmartSelect</title>
+        <link href="css/font-awesome.min.css" rel="stylesheet" />
+        <link href="css/phossa.css" rel="stylesheet" />
+        <link href="smartselect.min.css" rel="stylesheet" />
+        <link href="css/demo.css" rel="stylesheet" />
+        <style>
+            #pool button {
+              margin: 3px;
+              width: 80px;
+            }
+            #pool button i {
+              float: right;
+              margin-top: 3px;
+            }
+            #pool button i:hover {
+              color: red;
+            }
+        </style>
+    </head>
+    <body data-spy="scroll" data-target=".scroll">
+        <!-- load scripts -->
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="jquery.smartselect.min.js"></script>
+
+                        <div class="demo">
+                            <select id="demo-1a">
+                                <option value="1">label 1</option>
+                                <option value="2">label 2</option>
+                                <option value="3" disabled>label 3</option>
+                                <option value="4" selected>label 4</option>
+                                <option value="5">label 5</option>
+                                <option value="6">label 6</option>
+                                <option value="7">label 7</option>
+                                <option value="8">label 8</option>
+                            </select>
+                            <script>
+                                $(document).ready(function() {
+                                    $("select#demo-1a").smartselect({
+                                        multiple: false,
+                                        text: {
+                                            selectLabel: 'Select ...'
+                                        },
+                                        toolbar: false
+                                    });
+                                });
+                            </script>
+                        </div>
+    </body>
+</html>

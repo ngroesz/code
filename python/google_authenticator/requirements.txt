@@ -1,0 +1,4 @@
+pyotp==2.8.0
+pypng==0.20220715.0
+qrcode
+typing_extensions==4.4.0

@@ -1,0 +1,195 @@
+#include <regex>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <stdlib.h>
+#include <cerrno>
+#include <queue>
+
+using namespace std;
+
+struct Node
+{
+    long int node_id;
+    long int left_id;
+    Node *left_child;
+    long int right_id;
+    Node *right_child;
+    string description;
+};
+
+class Tree
+{
+    public:
+        Tree()
+        {
+            head = NULL;
+        }
+
+        ~Tree()
+        {
+            if (head != NULL) {
+                delete_node(head);
+            }
+        }
+
+        bool read_file(const char *filename)
+        {
+            ifstream input_file(filename);
+
+            if (!input_file.is_open()) {
+                cerr << "Cannot open input file " << filename << endl;
+            }
+
+            regex match_node_with_children("([[:digit:]]+)[[:space:]]+([[:digit:]]+)[[:space:]]+([[:digit:]]+)[[:space:]]+(.*)", regex_constants::extended);
+            regex match_node_without_children("([[:digit:]]+)[[:space:]]+(.*)", regex_constants::extended);
+            cmatch capture;
+
+            string line;
+            while (getline(input_file, line)) {
+                if (regex_match(line.c_str(), capture, match_node_with_children)) {
+                    long int node_id = parse_node_id(capture[1]);
+                    long int left_node_id = parse_node_id(capture[2]);
+                    long int right_node_id = parse_node_id(capture[3]);
+                    if (!this->construct_and_add_node(node_id, left_node_id, right_node_id, capture[4])) {
+                        cerr << "Error: failed to find a place for node id " << node_id << endl;
+                    }
+                } else if(regex_match(line.c_str(), capture, match_node_without_children)) {
+                    long int node_id = parse_node_id(capture[1]);
+                    if (!this->construct_and_add_node(node_id, -1, -1, capture[2])) {
+                        cerr << "Error: failed to find a place for node id " << node_id << endl;
+                    }
+                } else {
+                    cerr << "Error: Could not parse line \"" << line << "\"" << endl;
+                }
+            }
+
+            return true;
+        }
+
+        const void print_depth_first()
+        {
+            this->traverse_and_print_depth_first(head);
+            cout << endl;
+        }
+
+        const void print_breadth_first()
+        {
+            if (head == NULL) {
+                return;
+            }
+
+            queue<Node *> b;
+            b.push(head);
+
+            Node *current_ptr;
+
+            while (!b.empty()) {
+                current_ptr = b.front();
+                b.pop();
+                cout << "'" << current_ptr->description << "'" << " ";
+
+                if (current_ptr->left_child) {
+                    b.push(current_ptr->left_child);
+                }
+
+                if (current_ptr->right_child) {
+                    b.push(current_ptr->right_child);
+                }
+            }
+            cout << endl;
+        }
+
+    private:
+        void delete_node(Node *starting_ptr)
+        {
+            if (starting_ptr->left_child) {
+                delete_node(starting_ptr->left_child);
+            }
+            if (starting_ptr->right_child) {
+                delete_node(starting_ptr->right_child);
+            }
+            delete starting_ptr;
+        }
+
+        const void traverse_and_print_depth_first(Node *node_ptr)
+        {
+            if (node_ptr == NULL) {
+                return;
+            }
+            cout << "'" << node_ptr->description << "'" << " ";
+            traverse_and_print_depth_first(node_ptr->left_child);
+            traverse_and_print_depth_first(node_ptr->right_child);
+        }
+
+        bool add_node(Node *starting_ptr, Node *new_node)
+        {
+            if (starting_ptr == NULL) {
+                return false;
+            }
+
+            if(starting_ptr->left_id == new_node->node_id) {
+                if (starting_ptr->left_child != NULL) {
+                    cerr << "Error: Attempting to add duplicate node with id " << new_node->node_id << endl;
+                    return false;
+                }
+                starting_ptr->left_child = new_node;
+                return true;
+            } else if(starting_ptr->right_id == new_node->node_id) {
+                if (starting_ptr->right_child != NULL) {
+                    cerr << "Error: Attempting to add duplicate node with id " << new_node->node_id << endl;
+                    return false;
+                }
+                starting_ptr->right_child = new_node;
+                return true;
+            } else {
+                return add_node(starting_ptr->left_child, new_node) || add_node(starting_ptr->right_child, new_node);
+            }
+        }
+
+        bool construct_and_add_node(const long int node_id, const long int left_id, const long int right_id, const string &description)
+        {
+            Node *new_node = new Node;
+            new_node->node_id = node_id;
+            new_node->left_id = left_id;
+            new_node->left_child = NULL;
+            new_node->right_id = right_id;
+            new_node->right_child = NULL;
+            new_node->description = description;
+
+            if (head == NULL) {
+                head = new_node;
+            } else {
+                add_node(head, new_node);
+            }
+
+            return true;
+        }
+
+        const long int parse_node_id(const string &node_id_str)
+        {
+            long int node_id = 0;
+            node_id = strtol(node_id_str.c_str(), NULL, 0);
+            if (errno != 0) {
+                cerr << "Error parsing node_id \"" << node_id_str << "\"" << endl;
+            }
+            return node_id;
+        }
+
+        Node *head;
+};
+
+int main(int argc, char **argv)
+{
+    if (argc != 2) {
+        cout << "Usage: tree <input_file>" << endl;
+        return 1;
+    }
+
+    Tree *tree = new Tree();
+    tree->read_file(argv[1]);
+    tree->print_depth_first();
+    tree->print_breadth_first();
+
+    delete tree;
+}

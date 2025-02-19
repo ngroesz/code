@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <script src="jquery-3.3.1.min.js"></script>
+
+        <link href="bootstrap.min.css" rel="stylesheet" />
+        <link href="font-awesome.min.css" rel="stylesheet" />
+        <link href="smartselect.min.css" rel="stylesheet" />
+
+        <!-- <link href="phossa.css" rel="stylesheet" /> -->
+        <!-- <link href="demo.css" rel="stylesheet" /> -->
+    </head>
+    <body>
+        <script src="jquery.smartselect.min.js"></script>
+        hi
+            <select id="data_types_select" name="data_types_select" placeholder="Select" multiple></select>
+
+            <script>
+                $(document).ready(function() {
+                    var ss = $("select#data_types_select").smartselect({
+                        multiple: true,
+                        text: {
+                            selectLabel: 'Study Data'
+                        },
+                        toolbar: {
+                            buttonSearch:   false,
+                            buttonAlias:    false,
+                            buttonView:     false,
+                            buttonUnfold:   false,
+                            buttonCancel:   false,
+                            buttonCheckAll: true,
+                            buttonUnCheck:  true
+                        }
+                    }).getsmartselect();
+
+                    ss.addOption({
+                        label: 'insulin',
+                        value: 'insulin'
+                    });
+                    ss.addOption({
+                        label: 'delivered',
+                        value: 'insulin_delivered',
+                        level: 2
+                    }, false, 'insulin');
+                    ss.addOption({
+                        label: 'projected',
+                        value: 'insulin_projected',
+                        level: 2
+                    }, false, 'insulin');
+                    ss.addOption({
+                        label: 'requested',
+                        value: 'insulin_requested',
+                        level: 2
+                    }, false, 'insulin');
+
+
+                    ss.addOption({
+                        label: 'glucose',
+                        value: 'glucose'
+                    });
+                    ss.addOption({
+                        label: 'delivered',
+                        value: 'glucose_delivered',
+                        level: 2
+                    }, false, 'glucose');
+                    ss.addOption({
+                        label: 'requested',
+                        value: 'glucose_requested',
+                        level: 2
+                    }, false, 'glucose');
+
+                });
+            </script>
+        what's the frequency, kenneth?
+    </body>
+</html>
