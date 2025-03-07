@@ -1,6 +1,8 @@
 BOARD = arduino:avr:uno
-PATH = /home/nick/code/arduino/ir_recv
-PORT = /dev/ttyACM0
+PATH = $(PWD)
+#PORT = /dev/ttyUSB0
+# my attempt to automatically detect port
+$(eval PORT=$(shell sh -c "arduino-cli board list | grep arduino:avr" | awk '{print $$1}'))
 
 .PHONY:
 compile:
