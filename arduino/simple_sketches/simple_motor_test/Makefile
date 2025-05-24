@@ -1,6 +1,6 @@
 BOARD = arduino:avr:uno
 PATH = $(PWD)
-PORT = /dev/ttyUSB0
+PORT = /dev/ttyUSB1
 # my attempt to automatically detect port
 #$(eval PORT=$(shell sh -c "arduino-cli board list | grep arduino:avr" | awk '{print $$1}'))
 

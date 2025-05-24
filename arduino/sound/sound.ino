@@ -18,7 +18,7 @@
 #include "pitches.h"
 
 #define SPEAKER_PIN 7
-#define LED_PIN_1 4
+#define LED_PIN_1 LED_BUILTIN
 // notes in the melody:
 int melody[] = {
   NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
@@ -32,7 +32,7 @@ int noteDurations[] = {
 void setup() {
     pinMode(SPEAKER_PIN, OUTPUT);
     pinMode(LED_PIN_1, OUTPUT);
-    digitalWrite(LED_PIN_1, HIGH);
+    digitalWrite(LED_PIN_1, LOW);
 }
 
 void loop() {
@@ -48,7 +48,7 @@ void loop() {
     int pauseBetweenNotes = noteDuration * 1.30;
     delay(pauseBetweenNotes);
     // stop the tone playing:
-    noTone(SPEAKER_PIN);
+    //noTone(SPEAKER_PIN);
   }
 
 }

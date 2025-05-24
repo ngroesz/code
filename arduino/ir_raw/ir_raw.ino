@@ -1,4 +1,4 @@
-#define IR_RECEIVER_PIN 2
+#define IR_RECEIVER_PIN 3
 #define IR_RECEIVER_PORT PIND
 #define IR_MAXPULSE 40000
 #define IR_RESOLUTION 20
@@ -76,7 +76,7 @@ unsigned long read_ir_data()
 
 void setup()
 {
-    Serial.begin(9600);
+    Serial.begin(115200);
     pinMode(IR_RECEIVER_PIN, INPUT);
     ir_data_receiving = false;
     attachInterrupt(digitalPinToInterrupt(IR_RECEIVER_PIN), ir_receiver_interrupt, LOW);
