@@ -1,0 +1,9 @@
+#define IR_PIN 3
+#define LED_PIN_1 4
+#define LED_PIN_2 A0
+#define LED_PIN_3 17
+#define LEFT_MOTOR_PWM_PIN 5
+#define RIGHT_MOTOR_PWM_PIN 6
+#define SHIFT_CLEAR_PIN 13
+#define SHIFT_CLOCK_PIN 12
+#define SHIFT_DATA_PIN 8

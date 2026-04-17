@@ -1,0 +1,97 @@
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <script src="jquery-3.3.1.min.js"></script>
+
+        <link href="bootstrap.min.css" rel="stylesheet" />
+        <link href="font-awesome.min.css" rel="stylesheet" />
+        <link href="smartselect.min.css" rel="stylesheet" />
+
+        <!-- <link href="phossa.css" rel="stylesheet" /> -->
+        <!-- <link href="demo.css" rel="stylesheet" /> -->
+    </head>
+
+<body>
+<div class="container">
+    <script src="jquery.smartselect.min.js"></script>
+    <script type="text/javascript">
+                //$(document).ready(function() {
+                //    var ss = $("select#data_types_select").smartselect({
+                //        multiple: true,
+                //        text: {
+                //            selectLabel: 'Study Data'
+                //        },
+                //        toolbar: {
+                //            buttonSearch:   false,
+                //            buttonAlias:    false,
+                //            buttonView:     false,
+                //            buttonUnfold:   false,
+                //            buttonCancel:   false,
+                //            buttonCheckAll: true,
+                //            buttonUnCheck:  true
+                //        }
+                //    }).getsmartselect();
+
+                //    ss.addOption({
+                //        label: 'insulin',
+                //        value: 'insulin'
+                //    });
+                //    ss.addOption({
+                //        label: 'delivered',
+                //        value: 'insulin_delivered',
+                //        level: 2
+                //    }, false, 'insulin');
+                //    ss.addOption({
+                //        label: 'projected',
+                //        value: 'insulin_projected',
+                //        level: 2
+                //    }, false, 'insulin');
+                //    ss.addOption({
+                //        label: 'requested',
+                //        value: 'insulin_requested',
+                //        level: 2
+                //    }, false, 'insulin');
+
+
+                //    ss.addOption({
+                //        label: 'glucose',
+                //        value: 'glucose'
+                //    });
+                //    ss.addOption({
+                //        label: 'delivered',
+                //        value: 'glucose_delivered',
+                //        level: 2
+                //    }, false, 'glucose');
+                //    ss.addOption({
+                //        label: 'requested',
+                //        value: 'glucose_requested',
+                //        level: 2
+                //    }, false, 'glucose');
+
+                //});
+    </script>
+    <form action="" method="post" id="data_export_form">
+        <input id="csrf_token" name="csrf_token" type="hidden" value="IjIxZWZlYTFlN2ViNTJmNWRiOTE3NzAzMWE2MGUzMzhkODRmNDhlMzIi.XdxhZA.LOrrrbGtV0-COPV6U332wa7ehdM">
+        <div class="form_input">
+            <label for="data_format">Data Format</label>
+            <select id="data_format" name="data_format"><option value="csv">CSV</option><option value="json">JSON</option></select>
+
+            <label for="study_id">Study Id</label>
+            <select id="study_id" name="study_id"><option selected value="__None"></option><option value="6635_082018_103722">6635_082018_103722</option></select>
+
+            <label for="export_specific_data_types">Export Specific Data Types</label>
+            <input id="export_specific_data_types" name="export_specific_data_types" onClick="toggleVisibility(this, &#x27;data_types_input&#x27;);" type="checkbox" value="y">
+
+            <label for="data_types_select">Data Types</label>
+            <select id="data_types_select" name="data_types_select" placeholder="Select" multiple></select>
+            <div style="clear: both;"></div>
+            <div id="submit"><input id="submit" name="submit" type="submit" value="Generate Export"></div>
+        </div>
+    </form>
+
+    <!-- end content -->
+</body>
+</html>

@@ -1,0 +1,10 @@
+47 42 43 fourty seven
+42 7 8 fourty two
+7 seven
+8 eight
+43 4 11 fourth-three
+4 28 29 four
+11 eleven
+28 twenty-eight
+29 twenty-nine
+29 twenty-nine
