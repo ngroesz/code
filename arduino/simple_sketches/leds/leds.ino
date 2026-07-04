@@ -1,18 +1,19 @@
+#define LED_PIN_1 9
+#define LED_PIN_2 14
+#define LED_PIN_3 6
+
+
 void setup()
 {
-  pinMode(0, OUTPUT);
-  pinMode(1, OUTPUT);
-  pinMode(14, OUTPUT);
+  pinMode(LED_PIN_1, OUTPUT);
+  pinMode(LED_PIN_2, OUTPUT);
+  pinMode(LED_PIN_3, OUTPUT);
+
+  digitalWrite(LED_PIN_1, LOW);
+  digitalWrite(LED_PIN_2, LOW);
+  digitalWrite(LED_PIN_3, LOW);
 }
 
 void loop()
 {
-  digitalWrite(0, LOW);
-  digitalWrite(1, LOW);
-  digitalWrite(14, LOW);
-  delay(1000);
-  digitalWrite(0, HIGH);
-  digitalWrite(1, HIGH);
-  digitalWrite(14, HIGH);
-  delay(500);
 }

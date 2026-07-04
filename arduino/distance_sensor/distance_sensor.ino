@@ -23,7 +23,7 @@ void setup()
   // fast as possible).  To use continuous timed mode
   // instead, provide a desired inter-measurement period in
   // ms (e.g. sensor.startContinuous(100)).
-  sensor.startContinuous();
+  sensor.startContinuous(100);
 
   Serial.println("initialized");
 }
