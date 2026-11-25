@@ -4,8 +4,11 @@
 #include "constants.h"
 #include "pins.h"
 
-unsigned char forward_code = CONTROL_CODE_LEFT_MOTOR_FORWARD | CONTROL_CODE_RIGHT_MOTOR_FORWARD;
-unsigned char reverse_code = CONTROL_CODE_LEFT_MOTOR_REVERSE | CONTROL_CODE_RIGHT_MOTOR_REVERSE;
+//unsigned char forward_code = CONTROL_CODE_LEFT_MOTOR_FORWARD | CONTROL_CODE_RIGHT_MOTOR_FORWARD;
+//unsigned char reverse_code = CONTROL_CODE_LEFT_MOTOR_REVERSE | CONTROL_CODE_RIGHT_MOTOR_REVERSE;
+
+unsigned char forward_code = CONTROL_CODE_TURRET_MOTOR_FORWARD;
+unsigned char reverse_code = CONTROL_CODE_TURRET_MOTOR_REVERSE;
 
 void setup() {
     Serial.begin(115200);

@@ -3,6 +3,7 @@
 // there is some possible bug in this code wherein it takes several loops for the motor to start working?
 // i am not sure what could cause this ... some bad initialization of shift register?
 
+#include <PVision.h>
 #include <Wire.h>
 
 #include "constants.h"
